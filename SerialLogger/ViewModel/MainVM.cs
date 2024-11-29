@@ -144,15 +144,15 @@ namespace SerialLogger.ViewModel
                 {
                     if (!_serialService.Open(port, baudRate))
                     {
-                        _dialogBoxesService.ShowMessage("Otvaranje porta nije uspelo.", "Open port");
+                        _dialogBoxesService.ShowMessage("Port open failed.", "Open port");
                     }
                     return;
                 }
-                _dialogBoxesService.ShowMessage("Otvaranje porta nije uspelo.", "Close port");
+                _dialogBoxesService.ShowMessage("Port open failed.", "Close port");
             }
             else
             {
-                _dialogBoxesService.ShowMessage("Port nije odabran.\nOdaberite port.", "Open port");
+                _dialogBoxesService.ShowMessage("No port selected.\nChoose a port.", "Open port");
             }
         }
 
