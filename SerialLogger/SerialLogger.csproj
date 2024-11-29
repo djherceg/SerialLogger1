@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>True</UseWindowsForms>
+    <Description>A tool to save serial input to files and display it on screen.</Description>
+    <PackageIcon>2020834.png</PackageIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="appicon.png" />
+    <None Remove="log.png" />
+    <None Remove="logs.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.3.2" />
+    <PackageReference Include="System.IO.Ports" Version="9.0.0" />
+    <PackageReference Include="System.Management" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="appicon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </Resource>
+    <Resource Include="log.png" />
+    <Resource Include="logs.png" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,81 @@
+﻿<Window x:Class="SerialLogger.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SerialLogger"
+        xmlns:vm="clr-namespace:SerialLogger.ViewModel"
+        xmlns:conv="clr-namespace:SerialLogger.Converters"
+        xmlns:serv="clr-namespace:SerialLogger.Services"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="Serial Logger 0.2" Height="600" Width="900"
+        Loaded="Window_Loaded" Closing="Window_Closing" Icon="/log.png">
+    <Window.Resources>
+        <vm:MainVM x:Key="viewModel" />
+        <conv:BoolToBrushConverter x:Key="boolToBrush" TrueBrush="Orange" FalseBrush="Gray" />
+        <conv:BoolToBrushConverter x:Key="logTextBrush" TrueBrush="Black" FalseBrush="Gray" />
+    </Window.Resources>
+    <Grid DataContext="{StaticResource viewModel}" Margin="3">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="26"/>
+            <RowDefinition/>
+            <RowDefinition Height="32"/>
+        </Grid.RowDefinitions>
+        <DockPanel HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                <Button x:Name="btnRefreshPorts" Content="Get Ports" Command="{Binding EnumeratePortsCommand}" Width="80"/>
+                <ComboBox x:Name="cmbPort" ItemsSource="{Binding Ports}" DisplayMemberPath="Description" SelectedValuePath="Name" SelectedValue="{Binding Port}" Width="240"/>
+                <ComboBox x:Name="cmbBaud" ItemsSource="{Binding BaudRates}" SelectedItem="{Binding BaudRate}" Width="80"/>
+                <Button x:Name="btnOpenPort" Content="{Binding PortOpenButtonTitle}" Command="{Binding PortOpenCloseCommand}" Width="80"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right" HorizontalAlignment="Right">
+                <CheckBox x:Name="chkScrollText" Content="Scroll to end" IsChecked="{Binding ScrollToEnd}" Width="120" VerticalAlignment="Center"/>
+                <ComboBox x:Name="cmbMaxLines" SelectedItem="{Binding MaxLines}">
+                    <ComboBox.Items>
+                        <sys:Int32>10</sys:Int32>
+                        <sys:Int32>25</sys:Int32>
+                        <sys:Int32>50</sys:Int32>
+                        <sys:Int32>100</sys:Int32>
+                        <sys:Int32>250</sys:Int32>
+                        <sys:Int32>500</sys:Int32>
+                        <sys:Int32>1000</sys:Int32>
+                    </ComboBox.Items>
+                </ComboBox>
+                <Button x:Name="btnClearText" Content="Clear text" Command="{Binding ClearTextCommand}" Width="80" />
+            </StackPanel>
+        </DockPanel>
+
+        <DockPanel HorizontalAlignment="Stretch" Grid.Row="1">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Right">
+                <CheckBox Content="Save to file" IsChecked="{Binding SaveToFile}" VerticalAlignment="Center" Width="100"/>
+            </StackPanel>
+            <Button Content="Output folder:" x:Name="btnSaveTo" Command="{Binding ChooseOutputFolderCommand}" Width="100"/>
+            <TextBox IsReadOnly="true" x:Name="txtOutputFolder" Text="{Binding OutputFolder}" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="8 0 8 0"/>
+        </DockPanel>
+
+        <TextBox x:Name="txtSerialData" Grid.Row="2" IsReadOnly="True" BorderThickness="3" BorderBrush="{Binding PortOpen, Converter={StaticResource boolToBrush}}" Foreground="{Binding PortOpen, Converter={StaticResource logTextBrush}}" Text="{Binding Text}" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" FontSize="{Binding FontSize}" FontFamily="Consolas">
+
+        </TextBox>
+
+
+        <StatusBar Grid.Row="3">
+            <StatusBarItem>
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Log file:" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding LogFileName}" VerticalAlignment="Center"/>
+                </StackPanel>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="" FontFamily="Segoe MDL2 Assets" Width="24" Command="{Binding SmallerFontCommand}" />
+                    <Button Content="" FontFamily="Segoe MDL2 Assets" Width="24" Command="{Binding LargerFontCommand}"/>
+                    <Button Content="?" Width="24" Click="Button_Click" />
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>
+
+    

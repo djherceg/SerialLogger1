@@ -1,0 +1,17 @@
+﻿<Window x:Class="SerialLogger.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SerialLogger"
+        mc:Ignorable="d"
+        Title="About Serial Logger" Height="450" Width="439" PreviewKeyDown="Window_PreviewKeyDown" ResizeMode="NoResize"
+        >
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="/logs.png" Stretch="Uniform"/>
+        </Grid.Background>
+        <Label Content="Serial Logger&#xD;&#xA;by&#xD;&#xA;Djordje Herceg&#xD;&#xA;November 2024&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="98" Width="114"/>
+
+    </Grid>
+</Window>
