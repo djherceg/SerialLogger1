@@ -9,6 +9,10 @@
     <UseWindowsForms>True</UseWindowsForms>
     <Description>A tool to save serial input to files and display it on screen.</Description>
     <PackageIcon>2020834.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/djherceg/SerialLogger1</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>Serial;Logger</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,6 +34,13 @@
     </Resource>
     <Resource Include="log.png" />
     <Resource Include="logs.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

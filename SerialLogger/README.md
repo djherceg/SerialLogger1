@@ -10,6 +10,12 @@ When the **Save to file** option is enabled, serial data is saved to a specified
 
 Data files are saved with a *.txt* extension and are named using the current date and time, followed by a three-character random suffix.
 
+## Requirements
+
+This application requires .NET 8 to run.
+For the Windows version, download **.NET 8.x Desktop Runtime** from here:
+https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+
 ## License
 
 Feel free to use this project as you wish, as long as you credit the original author and the GitHub repository.
